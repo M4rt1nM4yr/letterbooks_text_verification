@@ -1,0 +1,7 @@
+_target_: torch.nn.LSTM
+_partial_: True
+num_layers: 3
+dropout: 0.5
+bidirectional: True
+batch_first: True
+hidden_size: 256

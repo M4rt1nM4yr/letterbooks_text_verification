@@ -1,0 +1,24 @@
+defaults:
+  - scheduler: plateau.yaml
+  - cnn: light.yaml
+  - encoder: lstm.yaml
+
+_target_: src.model.HTR.s2s.s2s_dipl.S2SDipl
+lr: 2e-4
+p_noisy_teacher_forcing: 0.1
+decoder_warm_up_epochs: 0
+warm_up_steps: 4096
+feature_skip: False
+label_smoothing: 0.4
+fast_val: False
+transcription_target: dipl
+decoder:
+  _target_: src.model.HTR.decoder.transformer_decoder.HTRTransformerDecoder
+  _partial_: True
+  d_model: 256
+  num_layers: 2
+  nhead: 8
+  dim_feedforward: 512
+  pe_type: sinusoidal
+  dropout: 0.1
+  rezero: False

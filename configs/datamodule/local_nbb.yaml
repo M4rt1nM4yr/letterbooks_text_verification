@@ -1,0 +1,24 @@
+_target_: src.data.dipl_datamodule.DiplDataModule
+
+dataset_type: nbb_dipl
+root: /cluster/mayr/nbb/vanilla
+batch_size: 8
+n_workers: 8
+line_height: 64
+max_samples: [100,100,100]
+train_samples_per_epoch: 8192
+books_train: ["Band2"]
+books_val: ["Band2"]
+books_test: ["Band2"]
+abbreviations: False
+
+sample_augmentation:
+  _target_: src.data.sample_augmentation.ocrodeg.OcrodegAug
+  p_random_vert_pad: 0.2
+  p_random_hori_pad: 0.2
+  p_random_squeeze_stretch: 0.2
+  p_background_noise: 0.
+  p_distort_with_noise: 0.
+  p_erosion: 0.2
+  p_dilation: 0.2
+  p_slant_augmentation: 0.2

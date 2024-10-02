@@ -1,0 +1,27 @@
+_target_: src.data.dipl_datamodule.DiplDataModule
+
+dataset_type: nbb_dipl
+root: /home/woody/iwi5/iwi5059h/data/nbb/vanilla
+batch_size: 32
+n_workers: 12
+line_height: 64
+max_samples: [-1,-1,-1]
+train_samples_per_epoch: 16384
+books_train: ["Band3","Band5"]
+books_val: ["Band4"]
+books_test: ["Band2"]
+abbreviations: False
+return_text: both
+
+sample_augmentation:
+  _target_: src.data.sample_augmentation.ocrodeg.OcrodegAug
+  p_random_vert_pad: 0.2
+  p_random_hori_pad: 0.2
+  p_random_squeeze_stretch: 0.2
+  p_background_noise: 0.
+  p_distort_with_noise: 0.
+  p_erosion: 0.2
+  p_dilation: 0.2
+  p_slant_augmentation: 0.2
+  p_brightness: 0.2
+  p_contrast: 0.2

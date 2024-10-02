@@ -1,0 +1,10 @@
+# @package _global_
+
+defaults:
+  - _self_
+
+datamodule:
+  return_text: both
+
+model:
+  transcription_target: dipl

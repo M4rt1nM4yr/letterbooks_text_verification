@@ -1,0 +1,3 @@
+_target_: src.model.feature_extractor.light_fe.LightFE
+in_channels: 1
+fine_grained: True

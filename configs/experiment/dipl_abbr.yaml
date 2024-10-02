@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+  - _self_
+
+patience: 50
+
+datamodule:
+  return_text: both
+  abbreviations: True
+  train_samples_per_epoch: 32768
+
+model:
+  transcription_target: dipl
+  scheduler:
+    patience: 20

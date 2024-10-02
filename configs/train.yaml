@@ -1,0 +1,19 @@
+defaults:
+  - _self_
+  - datamodule: cluster_nbb.yaml
+  - model: baseline.yaml
+  - trainer: default.yaml
+  - experiment: null
+
+run_local: True
+name: Letterbooks_text_verification
+version: test
+save_dir: results/
+wandb_key: ?
+patience: 70
+monitor_criterium: val/cer_s2s
+ema: True
+
+hydra:
+  run:
+    dir: ${save_dir}/${name}/${version}
