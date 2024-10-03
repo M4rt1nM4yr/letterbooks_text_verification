@@ -8,7 +8,7 @@ from torchvision import transforms
 from torchvision.transforms.functional import adjust_contrast, adjust_brightness
 from kornia import morphology
 
-from src.data.sample_augmentation import utils
+from src.data.sample_augmentation.utils.degrade import *
 
 # data augmentation based on https://github.com/NVlabs/ocrodeg
 class OcrodegAug(nn.Module):
@@ -34,7 +34,7 @@ class OcrodegAug(nn.Module):
         self.p_erosion = p_erosion
         self.p_distort_with_noise = p_distort_with_noise
         self.p_background_noise = p_background_noise
-        self.noise_bg = utils.FastPrintlike(n_inks=background_noise_n_inks) if self.p_background_noise > 0 else None
+        self.noise_bg = FastPrintlike(n_inks=background_noise_n_inks) if self.p_background_noise > 0 else None
         self.p_slant_augmentation = p_slant_augmentation
         self.p_contrast = p_contrast
         self.p_brightness = p_brightness
@@ -53,7 +53,7 @@ class OcrodegAug(nn.Module):
         if self.p_random_hori_pad > torch.rand(1):
             pad_max[3] = x.shape[0] * 2
         if np.sum(pad_max)>0:
-            x = utils.random_pad(x, border=pad_max)
+            x = random_pad(x, border=pad_max)
 
         if self.p_random_squeeze_stretch > torch.rand(1):
             fx = np.random.uniform(low=0.7,high=1.6)
@@ -78,8 +78,8 @@ class OcrodegAug(nn.Module):
         # TODO: fix for RGB
         for sigma in [2,5]:
             if self.p_distort_with_noise > torch.rand(1):
-                noise = utils.bounded_gaussian_noise(x.shape, sigma, 3.0)
-                x = utils.distort_with_noise(x, noise)
+                noise = bounded_gaussian_noise(x.shape, sigma, 3.0)
+                x = distort_with_noise(x, noise)
 
         x = x / (x.max() if x.max() > 0 else 1)
         # TODO: fix for RGB
@@ -87,7 +87,7 @@ class OcrodegAug(nn.Module):
             x = 1-self.noise_bg(x)
 
         if self.p_slant_augmentation > torch.rand(1):
-            x = utils.slant_augmentation(x)
+            x = slant_augmentation(x)
 
         x = Image.fromarray((x*255).astype(np.uint8))
 

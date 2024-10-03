@@ -6,9 +6,6 @@ This project provides tools for text verification using the Nuremberg Letterbook
 ## Usage
 
 - Adjust root path in the datamodule configs. Root folder should contain all the image folders and the transcription folders (nuremberg_letterbooks) downloaded from Zenodo.
-- Run training: 
-	python train.py --config configs/your_config.yaml
-- For SLURM clusters:
-	sbatch slurm.sh train.py "version=test"
-
-
+- Set wandb key in config/train.yaml
+- Run training: python train.py --config configs/your_config.yaml
+- For SLURM clusters: sbatch slurm.sh train.py "version=test"

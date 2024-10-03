@@ -1,0 +1,22 @@
+# Install pytorch and torchvision for GPU support
+# Using version 2.0.1 with CUDA 11.7
+torch==2.0.1+cu117
+torchvision==0.15.2+cu117 
+
+kraken==5.0.0
+pytorch-lightning
+torchmetrics==1.4.1
+hydra-core==1.3.2
+einops==0.8.0
+beautifulsoup4==4.12.3
+shapely==1.8.5
+opencv-python
+kornia
+lxml
+scipy
+scikit-image==0.21.0
+wandb
+pyrootutils
+pandas
+overrides
+-f https://download.pytorch.org/whl/torch_stable.html

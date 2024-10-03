@@ -18,13 +18,9 @@ from src.callback.ema_callback import EMA
 from src.utils.pylogger import get_pylogger
 log = get_pylogger(__name__)
 
-@hydra.main(version_base="1.2", config_path=root/"configs", config_name="train.yaml")
+@hydra.main(version_base="1.2", config_path=str(root/"configs"), config_name="train.yaml")
 def main(cfg: DictConfig):
     log.info(OmegaConf.to_yaml(cfg))
-
-    if cfg.model.lambda_ctc==1.:
-        cfg.monitor_criterium = "val/cer_ctc"
-        cfg.model.fast_val = False
 
     os.makedirs(os.path.join(cfg.save_dir,cfg.name,cfg.version), exist_ok=True)
     if cfg.run_local:

@@ -1,6 +1,6 @@
 defaults:
   - _self_
-  - datamodule: cluster_nbb.yaml
+  - datamodule: local_nbb.yaml
   - model: baseline.yaml
   - trainer: default.yaml
   - experiment: null

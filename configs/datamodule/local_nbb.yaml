@@ -1,7 +1,7 @@
 _target_: src.data.dipl_datamodule.DiplDataModule
 
 dataset_type: nbb_dipl
-root: /cluster/mayr/nbb/vanilla
+root: ?
 batch_size: 8
 n_workers: 8
 line_height: 64
